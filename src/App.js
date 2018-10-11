@@ -1,36 +1,54 @@
 import React, { Component } from 'react';
 import './App.css';
+import MovieList from './MovieList.js';
 
 
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      movies: this.props.movies
+    }
+  }
 
-// class MovieListItem extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {     
-//     }
-//   }
-//   render() {
-//     return (
-//     );
-//   }
-// }
+  handleInputChange(e) {
+    console.log(e.target.value)
+    e.preventDefault();
+    this.setState({
+      movies: e.target.value
+    })
+  }
 
-var MovieListItem = (props) => (
-    <li className="movie">{props.movie}</li>
-)
+  componentDidMount() {
+    this.setState({
+      movies: this.props.movies
+    })
+  }
+ 
+  render() {
+    return (
+      <form className="form">
+        <h1 className="heading">My Movie List</h1>
+        <nav className="navbar"></nav>
+        <input className="form-control" type="text" value={this.state.movies}></input>
+        <button className="submit" onClick={this.handleInputChange.bind(this)}>Search Movie</button>
+      <div><MovieList movies={this.state.movies}/></div>
+     </form>
+    )
+  }
+}
 
-var MovieList = (props) => (
-    <ul className="movieList">
-    {props.movies.map((movie) => <MovieListItem movie={movie} />)}
-    </ul>
-)
+// var MovieListItem = (props) => (
+//     <li className="movie">{props.movie}</li>
+// )
 
-var App = (props) => (
-  <div>
-  <h2 className="heading">My Movie List</h2>
-    <MovieList movies={props.movies}/>
- </div>
-)
+// var MovieList = (props) => (
+//     <ul className="movieList">
+//     {props.movies.map((movie) => <MovieListItem movie={movie} />)}
+//     </ul>
+// )
+
+
 
 
 export default App;

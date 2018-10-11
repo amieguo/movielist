@@ -2,9 +2,7 @@ import React from 'react';
 
 
 var MovieListItem = (props) => (
-  <div>
-    <li>{props.movie}</li>
-  </div>
+    <li>{props.movie} </li>
 )
 
 export default MovieListItem;
