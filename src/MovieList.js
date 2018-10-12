@@ -2,8 +2,8 @@ import React from 'react';
 import MovieListItem from './MovieListItem.js';
 
 var MovieList = (props) => (
-    console.log(props),
-  <ul>
+   
+  <ul className="movie">
     {props.movies.map(movie => <MovieListItem movie={movie}/>)}
   </ul>
 )
