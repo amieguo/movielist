@@ -7,7 +7,7 @@ var Search = (props) => (
     <div>
     
     <input className="form-control" type="text" onChange={props.handleSearch}></input>
-    <label>Search Movie</label>
+    <label className="label">Search Movie</label>
     <button className="undo" onClick={props.handleUndo}>Show All</button>
     </div>
 )

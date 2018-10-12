@@ -10,14 +10,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      movies: this.props.movies,
-      // searchedMovie: ''
+      movies: [],
+      search: ''
     }
   }
 
   handleSearch(event) {
     var query = event.target.value;
-    var search = this.state.movies.filter((movie) => movie.includes(query));
+    var search = this.state.movies.filter((movie) => movie.toLowerCase().includes(query));
     // console.log(search);
     this.setState({
       movies: search
@@ -30,24 +30,30 @@ class App extends React.Component {
     })
   }
 
-  handleAdd(event) {
-    var newMovie = event.target.value;
-    console.log(newMovie);
-    var movieList = [];
-    for (var i = 0; i < movieData.length; i++) {
-      movieList.push(movieData[i]);
-    }
-    movieList.push(newMovie);
+  // handleAdd(event) {
+  //   var newMovie = event.target.value;
+  //   this.setState({
+  //     search: newMovie
+  //   })
+  //   // this.state.movies.push(newMovie);
+  //   // console.log(this.state.movies)
+  // }
+  /* handleAdd={this.handleAdd.bind(this)} */
+
+  handleSubmit(movie) {
+    var movieList = this.state.movies;
+    movieList.push(movie)
     this.setState({
       movies: movieList
     })
+    // this.props.handleadd(this.state)
   }
 
   render() {
     return (
       <div className="app">
         <h1 className="heading">My Movie List</h1>
-        <div><InputField handleAdd={this.handleAdd.bind(this)}/></div>
+        <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
         <div><Search handleSearch={this.handleSearch.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
         <div className="movies"><MovieList movies={this.state.movies}/></div>
      </div>
