@@ -11,21 +11,27 @@ class App extends React.Component {
     super(props);
     this.state = { 
       movies: [],
-      search: ''
+      // search: ''
     }
   }
 
-  handleSearch(event) {
-    var query = event.target.value;
-    console.log(this.state.movies);
-    var search = this.state.movies.filter((movie) => movie.title.includes(query));
-    // console.log(search);
+  // handleSearch(event) {
+  //   var query = event.target.value;
+  //   var search = this.state.movies.filter((movie) => movie.title.includes(query));
+  //   this.setState({
+  //     movies: search
+  //   })
+  // }
+  handleSearchInputChange(searchedMovie) {
+    console.log(searchedMovie)
+    var search = this.state.movies.filter((movie) => movie.title.includes(searchedMovie));
     this.setState({
       movies: search
     })
   }
 
   handleUndo() {
+    console.log(this.state.movies)
     this.setState({
       movies: this.state.movies
     })
@@ -55,7 +61,7 @@ class App extends React.Component {
       <div className="app">
         <h1 className="heading">My Movie List</h1>
         <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
-        <div><Search handleSearch={this.handleSearch.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
+        <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
         <div className="movies"><MovieList movies={this.state.movies}/></div>
      </div>
     )

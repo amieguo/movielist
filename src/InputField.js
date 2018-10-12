@@ -11,7 +11,6 @@ class InputField extends React.Component {
     
     handleInputChange(event) {
         var text = event.target.value;
-        console.log(text)
         this.setState({
             input: text
         })

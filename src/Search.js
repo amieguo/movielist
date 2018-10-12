@@ -3,14 +3,36 @@ import './App.css';
 
 
 
-var Search = (props) => (
-    <div>
+class Search extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            search: ''
+        }
+    }
+
+    handleSearch(event) {
+        var text = event.target.value;
+        this.setState = {
+            search: text
+        }
+        this.props.handleSearchInputChange(text);
+        
+    }
     
-    <input className="form-control" type="text" onChange={props.handleSearch}></input>
-    <label className="label">Search Movie</label>
-    <button className="undo" onClick={props.handleUndo}>Show All</button>
-    </div>
-)
+    
+    render() {
+    return (
+        <div>
+        <input className="form-control" type="text" onChange={this.handleSearch.bind(this)}></input>
+        <label className="label">Search Movie</label>
+        <button className="undo" onClick={this.props.handleUndo}>Show All</button>
+        </div>
+    )
+
+    }
+    
+}
             
         
 
