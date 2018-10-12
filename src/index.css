@@ -23,7 +23,7 @@ code {
 
 .movie {
   border: 1px solid #ccc;
-  display: block;
+  position: relative;
   width: 400px;
   margin-left: 450px;
   text-align: center;

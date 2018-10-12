@@ -1,39 +1,34 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieList from './MovieList.js';
-
+import Search from './Search.js';
+import movieData from './movieData.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      movies: this.props.movies
+      movies: movieData,
+      // searchedMovie: ''
     }
   }
 
-  handleInputChange(e) {
-    console.log(e.target.value)
-    e.preventDefault();
+  handleSubmit(event) {
+    let query = event.target.value
+    let search = this.state.movies.filter((movie) => movie.includes(query))
+    console.log(search);
     this.setState({
-      movies: e.target.value
+      movies: search
     })
   }
 
-  componentDidMount() {
-    this.setState({
-      movies: this.props.movies
-    })
-  }
- 
   render() {
     return (
-      <form className="form">
+      <div className="app">
         <h1 className="heading">My Movie List</h1>
-        <nav className="navbar"></nav>
-        <input className="form-control" type="text" value={this.state.movies}></input>
-        <button className="submit" onClick={this.handleInputChange.bind(this)}>Search Movie</button>
-      <div><MovieList movies={this.state.movies}/></div>
-     </form>
+        <div><Search handleSubmit={this.handleSubmit.bind(this)}/></div>
+        <div className="movies"><MovieList movies={this.state.movies}/></div>
+     </div>
     )
   }
 }
