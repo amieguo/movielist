@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
       movies: [],
-      // search: ''
+      search: []
     }
   }
 
@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   handleUndo() {
-    console.log(this.state.movies)
     this.setState({
       movies: this.state.movies
     })
