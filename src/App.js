@@ -17,7 +17,8 @@ class App extends React.Component {
 
   handleSearch(event) {
     var query = event.target.value;
-    var search = this.state.movies.filter((movie) => movie.toLowerCase().includes(query));
+    console.log(this.state.movies);
+    var search = this.state.movies.filter((movie) => movie.title.includes(query));
     // console.log(search);
     this.setState({
       movies: search
@@ -26,7 +27,7 @@ class App extends React.Component {
 
   handleUndo() {
     this.setState({
-      movies: this.props.movies
+      movies: this.state.movies
     })
   }
 
@@ -42,7 +43,7 @@ class App extends React.Component {
 
   handleSubmit(movie) {
     var movieList = this.state.movies;
-    movieList.push(movie)
+    movieList.push({title: movie})
     this.setState({
       movies: movieList
     })
