@@ -24,15 +24,17 @@ class App extends React.Component {
   // }
   handleSearchInputChange(searchedMovie) {
     console.log(searchedMovie)
-    var search = this.state.movies.filter((movie) => movie.title.includes(searchedMovie));
+    var currentList = this.state.movies;
+    var searchResults = currentList.filter((movie) => movie.title.includes(searchedMovie));
+    // if ()
     this.setState({
-      movies: search
+      search: searchResults
     })
   }
 
   handleUndo() {
     this.setState({
-      movies: this.state.movies
+      search: this.state.movies
     })
   }
 
@@ -50,7 +52,7 @@ class App extends React.Component {
     var movieList = this.state.movies;
     movieList.push({title: movie})
     this.setState({
-      movies: movieList
+      search: movieList
     })
     // this.props.handleadd(this.state)
   }
@@ -61,7 +63,7 @@ class App extends React.Component {
         <h1 className="heading">My Movie List</h1>
         <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
         <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
-        <div className="movies"><MovieList movies={this.state.movies}/></div>
+        <div className="movies"><MovieList movies={this.state.search}/></div>
      </div>
     )
   }
