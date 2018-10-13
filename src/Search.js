@@ -29,9 +29,7 @@ class Search extends React.Component {
         <button className="undo" onClick={this.props.handleUndo}>Show All</button>
         </div>
     )
-
     }
-    
 }
             
         

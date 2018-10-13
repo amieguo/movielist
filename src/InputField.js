@@ -25,8 +25,6 @@ class InputField extends React.Component {
         )
 
     }
-
-
 }        
         
 
