@@ -17,7 +17,7 @@ code {
   margin-top: 100px;
   margin-left: 400px;
   text-align: left;
-  padding: 10p
+  padding: 10px;
   
 }
 
@@ -27,15 +27,57 @@ code {
 
 .form-control {
   margin-left: 400px;
+  margin-bottom: 10px;
 }
 
 .inputbutton {
   position: relative;
   margin-left: 250px;
   padding: 50px;
+  margin-bottom: 20px;
+}
+.tabs {
+  /* float:left; */
+  margin-left: 0px;
+  margin-top: 50px;
+   width:100%;
+   background:#fff;
+   border-bottom:4px solid #000;
+   overflow:hidden;
+   position:relative;
+}
+.tab {
+  /* clear:left; */
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   left:20%;
+   text-align:center;
+}
+.tabitem {
+  display:inline;
+  margin:0 0 0 1px;
+  padding:3px 10px;
+  background:#ddd;
+  color:#000;
+  text-decoration:none;
+  line-height:1.3em;
+  width: 20px;
 }
 
+
+
+.tab-list-active {
+  background-color: white;
+  border: solid #ccc;
+  border-width: 1px 1px 0 1px;
+}
+
+
 .movies {
+  /* margin-top: 100px; */
   position: relative;
   width: 500px;
   margin-left: 250px;
@@ -46,9 +88,6 @@ code {
   border-width: 1px;
   background-size: 0ch;
   border-color: gray;
-  
-  
-  
 }
 
 .label {
