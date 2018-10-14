@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieList from './MovieList';
+
 
 class MovieListItem extends React.Component {
 
@@ -14,7 +14,7 @@ class MovieListItem extends React.Component {
         this.setState({
             watched: "Watched"
         })
-        console.log(movie)
+        // console.log(movie)
         this.props.handleChangeWatchStatus(movie)
         
     }

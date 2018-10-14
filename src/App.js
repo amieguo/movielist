@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import MovieList from './MovieList.js';
 import Search from './Search.js';
 import InputField from './InputField.js';
-import movieData from "./movieData";
+// import movieData from "./movieData";
 import Tabs from './Tabs';
 
 
@@ -41,7 +41,7 @@ class App extends React.Component {
       movies: movieList,
       search: movieList
     })
-    console.log("submit:", this.state.movies)
+    // console.log("submit:", this.state.movies)
   }
 
   handleChangeWatchStatus(movie) {
@@ -56,14 +56,15 @@ class App extends React.Component {
     }
 
     this.setState({
-      movies: oldList
+      movies: oldList,
+      search: oldList
     })
-    console.log('watchstatus:', this.state.movies)
+    // console.log('watchstatus:', this.state.movies)
   }
 
   handleSwitchTab = (tab) => {
-    console.log("switchtab:", this.state)
-    console.log("tab:", tab)
+    // console.log("switchtab:", this.state)
+    // console.log("tab:", tab)
     var movieList = this.state.movies;
     var watchedList = movieList.filter(movie => movie.watchStatus==="Watched")
     var toWatchList = movieList.filter(movie => movie.watchStatus==="To Watch")
