@@ -25,7 +25,7 @@ class App extends React.Component {
   handleSearchInputChange(searchedMovie) {
     console.log(searchedMovie)
     var currentList = this.state.movies;
-    var searchResults = currentList.filter((movie) => movie.title.includes(searchedMovie));
+    var searchResults = currentList.filter((movie) => movie.title.toLowerCase().includes(searchedMovie.toLowerCase()));
     // if ()
     this.setState({
       search: searchResults

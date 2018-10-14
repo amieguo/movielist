@@ -39,9 +39,15 @@ code {
   position: relative;
   width: 500px;
   margin-left: 250px;
-  text-align: center;
+  text-align: left;
   padding: 10px;
-  list-style: none
+  list-style: none;
+  border-style: solid;
+  border-width: 1px;
+  background-size: 0ch;
+  border-color: gray;
+  
+  
   
 }
 
@@ -53,6 +59,19 @@ code {
 .movie {
   list-style: none;
   height: 200px;
-  padding: 50px;
+  /* padding: 50px; */
+  /* display: inline-block; */
+  text-align: bottom;
+  /* border-style: solid;
+  border-width: 1px;
+  border-color: gray; */
+}
+.item {
+  text-align: float
 }
 
+.towatch {
+  text-align: right;
+  float: right;
+  vertical-align: text-bottom;
+}
