@@ -11,7 +11,9 @@ class App extends React.Component {
     super(props);
     this.state = { 
       movies: [],
-      search: []
+      search: [], 
+      // watched: [],
+      // towatch: []
     }
   }
 
@@ -50,12 +52,33 @@ class App extends React.Component {
 
   handleSubmit(movie) {
     var movieList = this.state.movies;
-    movieList.push({title: movie})
+    movieList.push({title: movie, watchStatus: "To Watch"})
     this.setState({
+      movies: movieList,
       search: movieList
     })
     // this.props.handleadd(this.state)
   }
+
+  handleChangeWatchStatus(movie) {
+    var oldList = this.state.movies;
+    // var oldToWatch = this.state.towatch;
+    // var newWatched = oldWatched.push(movie);
+    // var newToWatch = oldToWatch.filter((movie) => movie.title)
+    var newList = oldList.forEach((item) => {
+      if (item.title === movie.title) {
+        item.watchStatus = "Watched"
+      }
+    });
+    
+    this.setState({
+      movies: newList
+    })
+    console.log(this.state)
+  }
+
+  //handlewatch
+  //filter through all the movies for movies with this.state === "To Watch"
 
   render() {
     return (
@@ -63,7 +86,8 @@ class App extends React.Component {
         <h1 className="heading">My Movie List</h1>
         <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
         <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
-        <div className="movies"><MovieList movies={this.state.search}/></div>
+        
+        <div className="movies"><MovieList movies={this.state.search} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)}/></div>
      </div>
     )
   }

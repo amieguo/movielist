@@ -1,5 +1,5 @@
 import React from 'react';
-
+import MovieList from './MovieList';
 
 class MovieListItem extends React.Component {
 
@@ -10,11 +10,13 @@ class MovieListItem extends React.Component {
         }
     }
 
-    changeWatchStatus = () => {
+    changeWatchStatus = (movie) => {
         this.setState({
             watched: "Watched"
         })
-        // console.log(this.state, this)
+        console.log(movie)
+        this.props.handleChangeWatchStatus(movie)
+        
     }
 
     
@@ -23,7 +25,7 @@ class MovieListItem extends React.Component {
             <div>
                 <div className="item">
                 <li>{this.props.movie.title} 
-                <button className="towatch" onClick={this.changeWatchStatus}>{this.state.watched}</button>
+                <button className="towatch" onClick={() => this.changeWatchStatus(this.props.movie)}>{this.state.watched}</button>
                 </li>
                 </div>
             </div>
