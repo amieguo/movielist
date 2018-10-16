@@ -3,7 +3,7 @@ import MovieListItem from './MovieListItem.js';
 
 var MovieList = (props) => (
   <ul className="movie">
-    {props.movies.map(movie => <MovieListItem movie={movie} handleChangeWatchStatus={props.handleChangeWatchStatus}/>)}
+    {props.movies.map(movie => <MovieListItem movie={movie} changeWatchStatus={props.handleChangeWatchStatus} getInfo={props.getInfo}/>)}
   </ul>
 )
 

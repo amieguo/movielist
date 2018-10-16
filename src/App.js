@@ -12,11 +12,12 @@ class App extends React.Component {
     super(props);
     this.state = { 
       movies: [],
-      search: [], 
+      show: [], 
       tabs: ["All", "Watched", "To Watch"]
       // watched: [],
       // towatch: []
     }
+    // this.handleMovieInfo=this.handleMovieInfo.bind(this);
   }
 
   handleSearchInputChange(searchedMovie) {
@@ -24,13 +25,13 @@ class App extends React.Component {
     var currentList = this.state.movies;
     var searchResults = currentList.filter((movie) => movie.title.toLowerCase().includes(searchedMovie.toLowerCase()));
     this.setState({
-      search: searchResults
+      show: searchResults
     })
   }
 
   handleUndo() {
     this.setState({
-      search: this.state.movies
+      show: this.state.movies
     })
   }
 
@@ -39,25 +40,25 @@ class App extends React.Component {
     movieList.push({title: movie, watchStatus: "To Watch"})
     this.setState({
       movies: movieList,
-      search: movieList
+      show: movieList
     })
     // console.log("submit:", this.state.movies)
   }
 
   handleChangeWatchStatus(movie) {
-    var oldList = this.state.movies;
+    var List = this.state.movies;
     // var oldToWatch = this.state.towatch;
     // var newWatched = oldWatched.push(movie);/
     // var newToWatch = oldToWatch.filter((movie) => movie.title)
-    for (var i = 0; i < oldList.length; i++) {
-      if (oldList[i].title === movie.title) {
-        oldList[i].watchStatus = "Watched";
+    for (var i = 0; i < List.length; i++) {
+      if (List[i].title === movie.title) {
+        List[i].watchStatus = "Watched";
       }
     }
 
     this.setState({
-      movies: oldList,
-      search: oldList
+      movies: List,
+      show: List
     })
     // console.log('watchstatus:', this.state.movies)
   }
@@ -70,15 +71,15 @@ class App extends React.Component {
     var toWatchList = movieList.filter(movie => movie.watchStatus==="To Watch")
     if (tab === "All") {
       this.setState({
-        search: movieList
+        show: movieList
       })
     } else if (tab === "Watched") {
       this.setState({
-        search: watchedList
+        show: watchedList
       })
     } else if (tab === "To Watch") {
       this.setState({
-        search: toWatchList
+        show: toWatchList
       })
     }
   }
@@ -91,7 +92,7 @@ class App extends React.Component {
         <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
         <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
         <div className="tabs"><Tabs tabs={this.state.tabs} handleSwitchTab={this.handleSwitchTab.bind(this)}/></div>
-        <div className="movies"><MovieList movies={this.state.search} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)}/></div>
+        <div className="movies"><MovieList movies={this.state.show} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)} /></div>
      </div>
     )
   }
