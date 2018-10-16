@@ -14,7 +14,8 @@ class App extends React.Component {
     this.state = { 
       movies: [],
       show: [], 
-      tabs: ["All", "Watched", "To Watch"]
+      tabs: ["All", "Watched", "To Watch"],
+      detail: []
     }
   }
 
@@ -38,7 +39,7 @@ class App extends React.Component {
     movieList.push({title: movie, watchStatus: "To Watch"})
     this.setState({
       movies: movieList,
-      show: movieList
+      show: movieList,
     })
   }
 
@@ -78,28 +79,39 @@ class App extends React.Component {
 
   getMovieInfo = (movie) => {
     searchIMDB(movie, (data) => {
-      return(
-        <div>
-          <div>data.results[0].release_date</div>
-          <div>data.results[0].vote_average</div>
-      </div>
-      )
-    });
+      this.setState({
+        detail: [data.results[0].release_date, data.results[0].vote_average]
+      })
+    })
   }
+
+  // getMovieInfo = (movie) => {
+  //   searchIMDB(movie, (data) => {
+  //     return(
+  //       <div>
+  //         <div>data.results[0].release_date</div>
+  //         <div>data.results[0].vote_average</div>
+  //     </div>
+  //     )
+  //   });
+  // }
 
 
   render() {
     return (
+      console.log(this.state.detail[0]),
       <div className="app">
         <h1 className="heading">My Movie List</h1>
         <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
         <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
         <div className="tabs"><Tabs tabs={this.state.tabs} handleSwitchTab={this.handleSwitchTab.bind(this)}/></div>
-        <div className="movies"><MovieList movies={this.state.show} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)} getMovieInfo={this.getMovieInfo.bind(this)}/></div>
+        <div className="movies"><MovieList movies={this.state.show} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)} getMovieInfo={this.getMovieInfo.bind(this)}/></div> 
+      <div>{this.state.detail[0]}</div>
      </div>
     )
   }
 }
+
 
 
 export default App;
