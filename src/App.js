@@ -5,6 +5,7 @@ import Search from './Search.js';
 import InputField from './InputField.js';
 // import movieData from "./movieData";
 import Tabs from './Tabs';
+import searchIMDB from './searchIMDB';
 
 
 class App extends React.Component {
@@ -14,10 +15,7 @@ class App extends React.Component {
       movies: [],
       show: [], 
       tabs: ["All", "Watched", "To Watch"]
-      // watched: [],
-      // towatch: []
     }
-    // this.handleMovieInfo=this.handleMovieInfo.bind(this);
   }
 
   handleSearchInputChange(searchedMovie) {
@@ -42,14 +40,11 @@ class App extends React.Component {
       movies: movieList,
       show: movieList
     })
-    // console.log("submit:", this.state.movies)
   }
 
   handleChangeWatchStatus(movie) {
     var List = this.state.movies;
-    // var oldToWatch = this.state.towatch;
-    // var newWatched = oldWatched.push(movie);/
-    // var newToWatch = oldToWatch.filter((movie) => movie.title)
+
     for (var i = 0; i < List.length; i++) {
       if (List[i].title === movie.title) {
         List[i].watchStatus = "Watched";
@@ -60,12 +55,9 @@ class App extends React.Component {
       movies: List,
       show: List
     })
-    // console.log('watchstatus:', this.state.movies)
   }
 
   handleSwitchTab = (tab) => {
-    // console.log("switchtab:", this.state)
-    // console.log("tab:", tab)
     var movieList = this.state.movies;
     var watchedList = movieList.filter(movie => movie.watchStatus==="Watched")
     var toWatchList = movieList.filter(movie => movie.watchStatus==="To Watch")
@@ -84,6 +76,17 @@ class App extends React.Component {
     }
   }
 
+  getMovieInfo = (movie) => {
+    searchIMDB(movie, (data) => {
+      return(
+        <div>
+          <div>data.results[0].release_date</div>
+          <div>data.results[0].vote_average</div>
+      </div>
+      )
+    });
+  }
+
 
   render() {
     return (
@@ -92,7 +95,7 @@ class App extends React.Component {
         <div><InputField handleSubmit={this.handleSubmit.bind(this)}/></div>  
         <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
         <div className="tabs"><Tabs tabs={this.state.tabs} handleSwitchTab={this.handleSwitchTab.bind(this)}/></div>
-        <div className="movies"><MovieList movies={this.state.show} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)} /></div>
+        <div className="movies"><MovieList movies={this.state.show} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)} getMovieInfo={this.getMovieInfo.bind(this)}/></div>
      </div>
     )
   }
