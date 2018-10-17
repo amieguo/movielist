@@ -15,6 +15,7 @@ class App extends React.Component {
       movies: [],
       show: [], 
       tabs: ["All", "Watched", "To Watch"],
+      current: '',
       detail: []
     }
   }
@@ -80,6 +81,7 @@ class App extends React.Component {
   getMovieInfo = (movie) => {
     searchIMDB(movie, (data) => {
       this.setState({
+        current: movie.title,
         detail: [data.results[0].release_date, data.results[0].vote_average]
       })
     })
@@ -106,7 +108,14 @@ class App extends React.Component {
         <div><Search handleSearchInputChange={this.handleSearchInputChange.bind(this)} handleUndo={this.handleUndo.bind(this)}/></div>
         <div className="tabs"><Tabs tabs={this.state.tabs} handleSwitchTab={this.handleSwitchTab.bind(this)}/></div>
         <div className="movies"><MovieList movies={this.state.show} handleChangeWatchStatus={this.handleChangeWatchStatus.bind(this)} getMovieInfo={this.getMovieInfo.bind(this)}/></div> 
-      <div>{this.state.detail[0]}</div>
+        <div >
+          <div className="details-header">Show me more details!</div>
+          <div className="info-border">
+         <span className="info">Selected Movie: {this.state.current}</span>
+          <span className="info">Date Released: {this.state.detail[0]}</span>
+          <span className="info">Rating: {this.state.detail[1]}</span>
+          </div>
+        </div>
      </div>
     )
   }
